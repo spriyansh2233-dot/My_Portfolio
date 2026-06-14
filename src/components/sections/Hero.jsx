@@ -179,32 +179,28 @@ export default function Hero() {
             </motion.div>
           </motion.div>
 
-          {/* Hero Right Workspace Visual */}
+          {/* Hero Right — Atmospheric Workspace Scene */}
           <motion.div
             className="hero-visual-area"
-            initial={{ opacity: 0, scale: 0.95, y: 30 }}
-            animate={{ opacity: 1, scale: 1, y: 0 }}
-            transition={{ delay: 0.6, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+            initial={{ opacity: 0, x: 40 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ delay: 0.5, duration: 1.0, ease: [0.16, 1, 0.3, 1] }}
           >
             <motion.div
-              className="workspace-card-wrapper"
-              animate={{ y: [0, -8, 0] }}
-              transition={{ repeat: Infinity, duration: 5, ease: "easeInOut" }}
+              className="hero-img-float"
+              animate={{ y: [0, -10, 0] }}
+              transition={{ repeat: Infinity, duration: 6, ease: "easeInOut" }}
+              style={{ x: cardX, y: cardY }}
             >
-              <motion.div
-                className="workspace-card"
-                style={{ x: cardX, y: cardY }}
-                whileHover={{ y: -4 }}
-              >
-                <div className="workspace-img-container">
-                  <img 
-                    src="/image/developer_workspace.png" 
-                    alt="Premium full-stack developer workspace illustration" 
-                    className="workspace-img"
-                  />
-                  <div className="workspace-glow" />
-                </div>
-              </motion.div>
+              <div className="hero-img-scene">
+                <img
+                  src="/image/developer_workspace.png"
+                  alt="Full-stack developer workspace"
+                  className="hero-scene-img"
+                />
+                {/* Atmospheric violet-cyan glow that sits behind the scene */}
+                <div className="hero-scene-aura" />
+              </div>
             </motion.div>
           </motion.div>
         </div>
