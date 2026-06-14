@@ -1,0 +1,51 @@
+/* Custom Cursor Styling */
+
+/* Hide default cursor on desktop devices */
+@media (pointer: fine) {
+  html, body, a, button, input, textarea, select, [role="button"], .interactive {
+    cursor: none !important;
+  }
+}
+
+.cursor-dot {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 6px;
+  height: 6px;
+  background-color: var(--accent-primary);
+  border-radius: var(--radius-full);
+  z-index: 10000;
+  pointer-events: none;
+  mix-blend-mode: difference;
+}
+
+.cursor-circle {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 24px;
+  height: 24px;
+  border: 1.5px solid var(--accent-primary);
+  border-radius: var(--radius-full);
+  z-index: 9999;
+  pointer-events: none;
+  background-color: transparent;
+  transform-origin: center;
+  mix-blend-mode: difference;
+}
+
+.cursor-circle.hovered {
+  background-color: #ffffff;
+  border-color: #ffffff;
+}
+
+/* Hide on mobile/tablets where cursor isn't active */
+@media (max-width: 1024px) {
+  .cursor-dot, .cursor-circle {
+    display: none !important;
+  }
+  html, body, a, button, input, textarea, select, [role="button"], .interactive {
+    cursor: auto !important;
+  }
+}

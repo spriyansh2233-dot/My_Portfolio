@@ -1,0 +1,219 @@
+/* Contact Section Styles */
+.contact-section {
+  position: relative;
+  background-color: var(--background);
+}
+
+.contact-layout {
+  display: flex;
+  gap: var(--space-6);
+  align-items: flex-start;
+}
+
+/* Info Column Left */
+.contact-info-column {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.contact-title {
+  font-size: var(--text-2xl);
+  color: var(--text-primary);
+}
+
+.contact-subtitle {
+  font-size: var(--text-base);
+  color: var(--text-secondary);
+  line-height: 1.7;
+}
+
+
+
+/* Social link rows */
+.social-links-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.social-link-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--space-3) var(--space-4);
+  background-color: var(--surface-01);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  transition: transform var(--dur-fast) var(--ease-out-expo),
+              border-color var(--dur-fast) var(--ease-out-expo),
+              background-color var(--dur-fast) var(--ease-out-expo);
+}
+
+.social-link-row:hover {
+  transform: translateY(-2px);
+  border-color: var(--border-active);
+  background-color: var(--surface-02);
+}
+
+.social-row-left {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.social-row-icon {
+  color: var(--accent-primary);
+  display: flex;
+  align-items: center;
+}
+
+.social-row-name {
+  font-size: var(--text-sm);
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+
+/* Form Column Right */
+.contact-form-column {
+  width: 50%;
+}
+
+.form-card {
+  background-color: var(--surface-01);
+}
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  position: relative;
+  z-index: 1;
+}
+
+.form-field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.form-label {
+  font-size: 10px;
+  color: var(--text-tertiary);
+  text-transform: uppercase;
+}
+
+.form-input {
+  background-color: var(--surface-01);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  padding: var(--space-3);
+  font-family: inherit;
+  color: var(--text-primary);
+  font-size: var(--text-sm);
+  transition: border-color var(--dur-fast) var(--ease-out-expo),
+              box-shadow var(--dur-fast) var(--ease-out-expo);
+}
+
+.form-input::placeholder {
+  color: var(--text-tertiary);
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: var(--border-active);
+  box-shadow: 0 0 15px var(--accent-glow);
+}
+
+.form-input.error {
+  border-color: var(--accent-warm);
+}
+
+.form-textarea {
+  resize: vertical;
+}
+
+.form-error-msg {
+  font-size: 10px;
+  color: var(--accent-warm);
+}
+
+.form-submit-btn {
+  width: 100%;
+  padding: var(--space-3);
+  font-weight: 700;
+  margin-top: var(--space-2);
+  gap: var(--space-2);
+}
+
+/* Spinner */
+.form-loading-spinner {
+  width: 16px;
+  height: 16px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-top-color: #ffffff;
+  border-radius: var(--radius-full);
+  animation: form-spin 0.8s linear infinite;
+}
+
+@keyframes form-spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Success State */
+.form-success-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: var(--space-6) var(--space-4);
+  gap: var(--space-4);
+  position: relative;
+  z-index: 1;
+}
+
+.success-icon-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 64px;
+  height: 64px;
+  background-color: rgba(0, 212, 255, 0.1);
+  border: 2px solid var(--accent-secondary);
+  border-radius: var(--radius-full);
+  color: var(--accent-secondary);
+  box-shadow: 0 0 20px rgba(0, 212, 255, 0.2);
+}
+
+.success-title {
+  font-size: var(--text-lg);
+  font-weight: 700;
+}
+
+.success-desc {
+  font-size: var(--text-sm);
+  color: var(--text-secondary);
+  line-height: 1.6;
+  max-width: 300px;
+}
+
+.success-reset-btn {
+  font-size: var(--text-xs);
+  padding: var(--space-2) var(--space-4);
+  margin-top: var(--space-2);
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .contact-layout {
+    flex-direction: column;
+    gap: var(--space-6);
+  }
+  
+  .contact-info-column,
+  .contact-form-column {
+    width: 100%;
+  }
+}

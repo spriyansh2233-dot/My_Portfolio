@@ -1,0 +1,331 @@
+/* About Section Styles */
+.about-section {
+  position: relative;
+  background-color: var(--background);
+}
+
+.about-layout {
+  display: flex;
+  gap: var(--space-7);
+  align-items: center;
+  justify-content: space-between;
+}
+
+.about-text-column {
+  width: 100%;
+  max-width: 520px;
+}
+
+.about-heading {
+  font-size: var(--text-xl);
+  margin-bottom: var(--space-4);
+}
+
+.about-description {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  margin-bottom: var(--space-5);
+}
+
+.about-description p {
+  font-size: var(--text-base);
+  color: var(--text-secondary);
+  line-height: 1.7;
+}
+
+/* Currently indicator */
+.currently-indicator {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-2) var(--space-3);
+  background-color: var(--surface-01);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  margin-bottom: var(--space-3);
+}
+
+.currently-pulse {
+  width: 6px;
+  height: 6px;
+  background-color: var(--accent-primary);
+  border-radius: var(--radius-full);
+  display: inline-block;
+  box-shadow: 0 0 10px var(--accent-primary);
+  animation: currently-glow 1.5s infinite ease-in-out;
+}
+
+@keyframes currently-glow {
+  0%, 100% { opacity: 0.4; transform: scale(0.9); }
+  50% { opacity: 1; transform: scale(1.1); }
+}
+
+.currently-text {
+  font-size: var(--text-xs);
+  color: var(--text-secondary);
+}
+
+/* Quick Facts Grid */
+.quick-facts-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-4);
+  border-top: 1px solid var(--surface-03);
+  padding-top: var(--space-5);
+}
+
+.fact-item {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.fact-label {
+  font-size: var(--text-xs);
+  color: var(--text-tertiary);
+  text-transform: uppercase;
+}
+
+.fact-value {
+  font-size: var(--text-sm);
+  color: var(--text-primary);
+  font-weight: 500;
+}
+
+/* Constellation Card styling */
+.about-visual-column {
+  width: 100%;
+  max-width: 500px;
+}
+
+.constellation-card {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--surface-01);
+  min-height: 380px;
+}
+
+.card-ambient-glow {
+  position: absolute;
+  top: -20%;
+  left: -20%;
+  width: 140%;
+  height: 140%;
+  background: radial-gradient(circle, rgba(108, 99, 255, 0.05) 0%, transparent 60%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.constellation-header {
+  height: 40px;
+  border-bottom: 1px solid var(--surface-03);
+  display: flex;
+  align-items: center;
+  padding: 0 var(--space-4);
+  background-color: rgba(15, 15, 26, 0.5);
+  z-index: 1;
+}
+
+.constellation-title {
+  font-size: var(--text-xs);
+  color: var(--text-tertiary);
+}
+
+.constellation-body {
+  flex: 1;
+  padding: var(--space-2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+}
+
+.constellation-svg {
+  width: 100%;
+  height: 100%;
+  max-height: 240px;
+}
+
+/* SVG interactive paths */
+.constellation-line {
+  stroke: var(--surface-03);
+  stroke-width: 1.5;
+  transition: stroke var(--dur-normal) var(--ease-out-expo), stroke-width var(--dur-normal) var(--ease-out-expo);
+  stroke-dasharray: 4 4;
+}
+
+.constellation-line.glowing {
+  stroke: var(--accent-primary);
+  stroke-width: 2.5;
+  stroke-dasharray: none;
+}
+
+.node-dot {
+  fill: var(--text-tertiary);
+  stroke: var(--surface-01);
+  stroke-width: 2;
+  transition: fill var(--dur-fast) var(--ease-out-expo), r var(--dur-fast) var(--ease-out-expo);
+}
+
+.node-dot.active {
+  fill: var(--accent-primary);
+  r: 8;
+}
+
+.node-dot.connected {
+  fill: var(--accent-secondary);
+  r: 7;
+}
+
+.node-glow-ring {
+  fill: transparent;
+  stroke: var(--accent-primary);
+  opacity: 0;
+  transform-origin: center;
+  transition: opacity var(--dur-normal) var(--ease-out-expo), transform var(--dur-normal) var(--ease-out-expo), r var(--dur-normal) var(--ease-out-expo);
+}
+
+.node-glow-ring.active {
+  opacity: 0.8;
+  stroke: var(--accent-primary);
+  animation: active-glow-pulse 1.8s infinite ease-in-out;
+}
+
+@keyframes active-glow-pulse {
+  0% { transform: scale(1); opacity: 0.3; }
+  50% { transform: scale(1.35); opacity: 0.6; }
+  100% { transform: scale(1); opacity: 0.3; }
+}
+
+@keyframes pulse-ring {
+  0% { transform: scale(1); opacity: 0.2; }
+  100% { transform: scale(1.6); opacity: 0; }
+}
+
+.node-glow-ring.pulse {
+  stroke: var(--accent-secondary);
+  opacity: 0.25;
+  animation: pulse-ring 1.5s infinite cubic-bezier(0.215, 0.610, 0.355, 1);
+}
+
+/* Flagship Focusly Node Custom Styles */
+.flagship-dot {
+  stroke: var(--accent-primary);
+  stroke-width: 2px;
+}
+
+.node-glow-ring.flagship-pulse {
+  stroke: var(--accent-primary);
+  fill: none;
+  pointer-events: none;
+  transform-origin: center;
+  animation: flagship-ripple 3s infinite cubic-bezier(0.215, 0.610, 0.355, 1);
+}
+
+@keyframes flagship-ripple {
+  0% {
+    transform: scale(1);
+    opacity: 0.65;
+  }
+  100% {
+    transform: scale(1.8);
+    opacity: 0;
+  }
+}
+
+.node-label {
+  fill: var(--text-secondary);
+  font-size: var(--text-xs);
+  pointer-events: none;
+  transition: fill var(--dur-fast) var(--ease-out-expo), font-weight var(--dur-fast) var(--ease-out-expo), y var(--dur-normal) var(--ease-out-expo);
+}
+
+.node-label.active {
+  fill: var(--text-primary);
+  font-weight: 500;
+}
+
+.node-label.connected {
+  fill: var(--text-primary);
+}
+
+.constellation-node-group {
+  cursor: pointer;
+}
+
+/* Project Ecosystem details panel styling */
+.ecosystem-details-panel {
+  padding: var(--space-4) var(--space-5);
+  border-top: 1px solid var(--surface-03);
+  background-color: rgba(15, 15, 26, 0.85);
+  min-height: 110px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+  z-index: 2;
+  backdrop-filter: blur(8px);
+}
+
+.details-panel-content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  transition: opacity 0.25s ease-out;
+}
+
+.details-tech {
+  font-size: 10px;
+  color: var(--accent-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.details-title {
+  font-size: var(--text-md);
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-top: 2px;
+}
+
+.details-desc {
+  font-size: var(--text-sm);
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+.placeholder-state {
+  opacity: 0.6;
+}
+
+@media (max-width: 1024px) {
+  .about-layout {
+    flex-direction: column;
+    gap: var(--space-6);
+    align-items: center;
+  }
+  
+  .about-text-column,
+  .about-visual-column {
+    width: 100%;
+    max-width: 520px;
+  }
+  
+  .constellation-card {
+    max-width: 100%;
+    margin: 0 auto;
+  }
+}
+
+@media (max-width: 768px) {
+  .quick-facts-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .quick-facts-grid {
+    grid-template-columns: 1fr;
+  }
+}
