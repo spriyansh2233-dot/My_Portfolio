@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Check, Send, Mail } from 'lucide-react';
+import { Check, Send } from 'lucide-react';
 import './Contact.css';
 
 const GithubIcon = ({ size = 20, ...props }) => (
@@ -18,13 +18,18 @@ const LinkedinIcon = ({ size = 20, ...props }) => (
   </svg>
 );
 
-
+const CopyIcon = ({ size = 20, ...props }) => (
+  <svg viewBox="0 0 24 24" width={size} height={size} fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" {...props}>
+    <rect x="9" y="9" width="13" height="13" rx="2" ry="2" />
+    <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
+  </svg>
+);
 
 export default function Contact({ triggerToast }) {
   const [formData, setFormData] = useState({ name: '', email: '', message: '' });
   const [errors, setErrors] = useState({});
   const [formStatus, setFormStatus] = useState('idle'); // idle, loading, success
-
+  const [copied, setCopied] = useState(false);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -32,6 +37,15 @@ export default function Contact({ triggerToast }) {
     if (errors[name]) {
       setErrors((prev) => ({ ...prev, [name]: '' }));
     }
+  };
+
+  const handleCopyEmail = () => {
+    navigator.clipboard.writeText('spriyansh2233@gmail.com');
+    setCopied(true);
+    triggerToast('Email copied to clipboard!');
+    setTimeout(() => {
+      setCopied(false);
+    }, 2000);
   };
 
   const validateForm = () => {
@@ -47,24 +61,35 @@ export default function Contact({ triggerToast }) {
     return Object.keys(tempErrors).length === 0;
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (!validateForm()) return;
 
     setFormStatus('loading');
 
-    // Simulate server latency for premium experience
-    setTimeout(() => {
-      setFormStatus('success');
-      setFormData({ name: '', email: '', message: '' });
-    }, 1500);
-  };
+    try {
+      const response = await fetch('/api/send-email', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
 
-  const socialLinks = [
-    { name: 'GitHub', href: 'https://github.com/spriyansh2233-dot', icon: <GithubIcon size={20} />, handle: '@spriyansh2233-dot' },
-    { name: 'LinkedIn', href: 'https://www.linkedin.com/in/priyansh-sharma-30aa852b1', icon: <LinkedinIcon size={20} />, handle: '/in/priyansh-sharma-30aa852b1' },
-    { name: 'Email Me', href: 'mailto:spriyansh2233@gmail.com', icon: <Mail size={20} />, handle: 'spriyansh2233@gmail.com' },
-  ];
+      if (response.ok) {
+        setFormStatus('success');
+        setFormData({ name: '', email: '', message: '' });
+        triggerToast('Message sent successfully.');
+      } else {
+        setFormStatus('idle');
+        triggerToast('Failed to send message. Please try again.');
+      }
+    } catch (error) {
+      console.error('Error sending message:', error);
+      setFormStatus('idle');
+      triggerToast('Failed to send message. Please try again.');
+    }
+  };
 
   return (
     <section id="contact" className="contact-section section-padding">
@@ -80,24 +105,49 @@ export default function Contact({ triggerToast }) {
               I'm open to full-time roles, internships, and interesting collaborations. Whether you have a project in mind or just want to connect, feel free to reach out.
             </p>
 
-
-
             {/* Social Links Rows */}
             <div className="social-links-list">
-              {socialLinks.map((social) => (
-                <a
-                  key={social.name}
-                  href={social.href}
-                  target={social.name === 'Email Me' ? '_self' : '_blank'}
-                  rel={social.name === 'Email Me' ? '' : 'noreferrer'}
-                  className="social-link-row interactive"
-                >
-                  <div className="social-row-left">
-                    <span className="social-row-icon">{social.icon}</span>
-                    <span className="social-row-name">{social.name}</span>
-                  </div>
-                </a>
-              ))}
+              {/* Copy Email Button */}
+              <button
+                onClick={handleCopyEmail}
+                className="social-link-row interactive"
+              >
+                <div className="social-row-left">
+                  <span className="social-row-icon"><CopyIcon size={20} /></span>
+                  <span className="social-row-name">
+                    {copied ? 'Copied!' : 'Copy Email'}
+                  </span>
+                </div>
+                <span className="social-row-handle mono">spriyansh2233@gmail.com</span>
+              </button>
+
+              {/* LinkedIn Button */}
+              <a
+                href="https://www.linkedin.com/in/priyansh-sharma-30aa852b1"
+                target="_blank"
+                rel="noreferrer"
+                className="social-link-row interactive"
+              >
+                <div className="social-row-left">
+                  <span className="social-row-icon"><LinkedinIcon size={20} /></span>
+                  <span className="social-row-name">LinkedIn</span>
+                </div>
+                <span className="social-row-handle mono">/in/priyansh-sharma-30aa852b1</span>
+              </a>
+
+              {/* GitHub Button */}
+              <a
+                href="https://github.com/spriyansh2233-dot"
+                target="_blank"
+                rel="noreferrer"
+                className="social-link-row interactive"
+              >
+                <div className="social-row-left">
+                  <span className="social-row-icon"><GithubIcon size={20} /></span>
+                  <span className="social-row-name">GitHub</span>
+                </div>
+                <span className="social-row-handle mono">@spriyansh2233-dot</span>
+              </a>
             </div>
           </div>
 

@@ -156,8 +156,8 @@
 }
 
 .terminal-body {
-  padding: var(--space-4) var(--space-5);
-  height: 380px;
+  padding: var(--space-4) var(--space-5) var(--space-5) var(--space-5);
+  height: 480px;
   overflow: hidden;
   background-color: #0c0c16;
 }
