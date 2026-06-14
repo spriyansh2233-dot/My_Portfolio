@@ -43,8 +43,8 @@
   justify-content: space-between;
   align-items: center;
   padding: var(--space-3) var(--space-4);
-  background-color: var(--surface-01);
-  border: 1px solid var(--border-subtle);
+  background-color: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.05);
   border-radius: var(--radius-lg);
   transition: transform var(--dur-fast) var(--ease-out-expo),
               border-color var(--dur-fast) var(--ease-out-expo),
@@ -53,8 +53,9 @@
 
 .social-link-row:hover {
   transform: translateY(-2px);
-  border-color: var(--border-active);
-  background-color: var(--surface-02);
+  border-color: rgba(108, 99, 255, 0.35);
+  background: linear-gradient(135deg, rgba(108, 99, 255, 0.05) 0%, rgba(34, 211, 238, 0.02) 100%);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
 }
 
 button.social-link-row {
@@ -100,7 +101,12 @@ button.social-link-row {
 }
 
 .form-card {
-  background-color: var(--surface-01);
+  background: linear-gradient(160deg, rgba(15, 15, 26, 0.9) 0%, rgba(10, 10, 20, 0.95) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  box-shadow:
+    0 16px 40px -12px rgba(0, 0, 0, 0.7),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.35);
 }
 
 .contact-form {
@@ -141,8 +147,10 @@ button.social-link-row {
 
 .form-input:focus {
   outline: none;
-  border-color: var(--border-active);
-  box-shadow: 0 0 15px var(--accent-glow);
+  border-color: rgba(108, 99, 255, 0.55);
+  box-shadow: 
+    0 0 0 3px rgba(108, 99, 255, 0.10),
+    0 0 18px rgba(108, 99, 255, 0.18);
 }
 
 .form-input.error {

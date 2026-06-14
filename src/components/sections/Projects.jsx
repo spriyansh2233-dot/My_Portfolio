@@ -86,7 +86,7 @@ export default function Projects() {
             animate={focuslyInView ? { x: 0, opacity: 1, rotateY: 0 } : {}}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.1 }}
           >
-            <div className="browser-mockup">
+            <div className="browser-mockup featured-project-mockup">
               <div className="browser-header">
                 <div className="browser-dots">
                   <span className="dot" />
@@ -205,7 +205,7 @@ export default function Projects() {
             animate={quantumAgentInView ? { x: 0, opacity: 1, rotateY: 0 } : {}}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.1 }}
           >
-            <div className="browser-mockup">
+            <div className="browser-mockup featured-project-mockup">
               <div className="browser-header">
                 <div className="browser-dots">
                   <span className="dot" />

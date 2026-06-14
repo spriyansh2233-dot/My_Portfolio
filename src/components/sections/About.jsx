@@ -75,13 +75,13 @@ export default function About() {
             
             <div className="about-description">
               <p>
-                I'm a final-year B.Tech student specializing in Computer Science with a strong interest in full-stack web development.
+                I'm a final-year B.Tech student specializing in Computer Science with a focus on working as a <span className="highlight-purple">Full Stack Developer</span>.
               </p>
               <p>
-                I build modern web applications using React, Java, Spring Boot, and SQL, focusing on responsive user experiences and scalable backend systems.
+                I build modern web applications using React and <span className="highlight-purple">Java + Spring Boot</span>, focusing on responsive user experiences and scalable backend systems.
               </p>
               <p>
-                My projects include Focusly, an AI-powered learning platform, TechHub, an ecommerce application, Social-Mate, a social networking platform, and Quantum Intel, an AI-driven research assistant.
+                My projects include custom <span className="highlight-cyan">AI Applications</span> like Focusly (an AI-powered learning platform) and Quantum Intel (an AI-driven research assistant), alongside full-stack platforms.
               </p>
               <p>
                 Currently, I'm expanding my knowledge in system design, cloud technologies, and scalable software architecture while continuing to build real-world products.

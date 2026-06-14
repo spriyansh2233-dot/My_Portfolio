@@ -127,29 +127,47 @@
 .skills-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: var(--space-4);
-  margin-top: var(--space-4);
+  gap: var(--space-5);
+  margin-top: var(--space-6);
   align-items: stretch;
 }
 
 .skills-card {
-  background: linear-gradient(145deg, #0F0F1A 0%, #06060c 100%);
-  border: 1px solid var(--border-subtle);
+  background: linear-gradient(150deg, rgba(18, 18, 32, 0.88) 0%, rgba(12, 12, 24, 0.92) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.055);
   border-radius: var(--radius-lg);
-  padding: var(--space-4) var(--space-4);
+  padding: var(--space-5);
   display: flex;
   flex-direction: column;
   position: relative;
   overflow: hidden;
+  box-shadow: 
+    0 12px 32px -10px rgba(0, 0, 0, 0.65),
+    inset 0 1px 0 rgba(255, 255, 255, 0.06),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.35);
   transition: transform var(--dur-normal) var(--ease-out-expo),
               border-color var(--dur-normal) var(--ease-out-expo),
               box-shadow var(--dur-normal) var(--ease-out-expo);
 }
 
+.skills-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 8%;
+  width: 84%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(108, 99, 255, 0.4), transparent);
+  pointer-events: none;
+}
+
 .skills-card:hover {
-  transform: translateY(-5px);
+  transform: translateY(-6px);
   border-color: var(--border-active);
-  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.5), 0 0 25px var(--accent-glow);
+  box-shadow: 
+    0 22px 48px rgba(0, 0, 0, 0.65),
+    0 0 28px var(--accent-glow),
+    inset 0 1px 0 rgba(255, 255, 255, 0.09);
 }
 
 .card-ambient-glow {
@@ -171,79 +189,22 @@
 .category-title {
   font-size: var(--text-lg);
   font-weight: 700;
-  margin-bottom: var(--space-3);
+  margin-bottom: var(--space-4);
   color: var(--text-primary);
   font-family: 'Space Grotesk', sans-serif;
   z-index: 1;
-  border-bottom: 1px solid var(--surface-03);
   padding-bottom: var(--space-2);
+  position: relative;
 }
 
-/* Core Stack grid style */
-.core-skills-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: var(--space-4);
-  flex: 1;
-  z-index: 1;
-}
-
-.core-skill-item {
-  display: flex;
-  align-items: center;
-  gap: var(--space-3);
-  padding: var(--space-3);
-  background-color: rgba(108, 99, 255, 0.02);
-  border: 1px solid var(--border-subtle);
-  border-radius: var(--radius-md);
-  transition: background var(--dur-fast) var(--ease-out-expo),
-              border-color var(--dur-fast) var(--ease-out-expo),
-              transform var(--dur-fast) var(--ease-out-expo),
-              box-shadow var(--dur-fast) var(--ease-out-expo);
-}
-
-.core-skill-item:hover {
-  background-color: var(--surface-03);
-  border-color: var(--border-active);
-  transform: translateY(-2px);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4), 0 0 15px var(--accent-glow);
-}
-
-.core-skill-icon-wrapper {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 44px;
-  height: 44px;
-  background-color: rgba(108, 99, 255, 0.05);
-  border: 1px solid var(--border-subtle);
-  border-radius: var(--radius-sm);
-  color: var(--text-secondary);
-  transition: color var(--dur-fast), background var(--dur-fast), border-color var(--dur-fast);
-}
-
-.core-skill-item:hover .core-skill-icon-wrapper {
-  color: var(--accent-primary);
-  background-color: var(--surface-01);
-  border-color: var(--accent-primary);
-}
-
-.core-skill-info {
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-}
-
-.core-skill-name {
-  font-size: var(--text-sm);
-  font-weight: 600;
-  color: var(--text-primary);
-}
-
-.core-skill-level {
-  font-size: 10px;
-  color: var(--accent-secondary);
-  opacity: 0.8;
+.category-title::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(90deg, rgba(108, 99, 255, 0.45), rgba(34, 211, 238, 0.2), transparent);
 }
 
 /* Technologies & Tools pills container style */
@@ -309,11 +270,11 @@
 @media (max-width: 1024px) {
   .skills-grid {
     grid-template-columns: 1fr;
-    gap: var(--space-6);
+    gap: var(--space-5);
   }
   
   .skills-card {
-    max-width: 580px;
+    max-width: 100%;
     width: 100%;
     margin: 0 auto;
   }
@@ -331,11 +292,5 @@
   .badge-content {
     flex-direction: column;
     gap: var(--space-1);
-  }
-}
-
-@media (max-width: 480px) {
-  .core-skills-grid {
-    grid-template-columns: 1fr;
   }
 }

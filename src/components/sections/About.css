@@ -30,8 +30,19 @@
 
 .about-description p {
   font-size: var(--text-base);
-  color: var(--text-secondary);
+  color: #D8D8E5;
   line-height: 1.7;
+}
+
+.highlight-purple {
+  color: #8C85FF;
+  font-weight: 600;
+}
+
+.highlight-cyan {
+  color: #22D3EE;
+  font-weight: 600;
+  text-shadow: 0 0 10px rgba(34, 211, 238, 0.15);
 }
 
 /* Status Badge */
@@ -101,8 +112,10 @@
 }
 
 .developer-profile-card {
-  background-color: var(--surface-01);
-  border: 1px solid var(--border-subtle);
+  background: linear-gradient(165deg, rgba(17, 17, 30, 0.75) 0%, rgba(12, 12, 22, 0.85) 100%);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(108, 99, 255, 0.18);
   border-radius: 20px;
   padding: 32px;
   display: flex;
@@ -110,19 +123,35 @@
   align-items: center;
   text-align: center;
   box-shadow: 
-    0 20px 40px -15px rgba(0, 0, 0, 0.7),
-    0 0 25px 2px rgba(108, 99, 255, 0.05);
+    0 24px 48px -15px rgba(0, 0, 0, 0.75),
+    0 0 0 1px rgba(255, 255, 255, 0.04),
+    inset 0 1px 0 rgba(255, 255, 255, 0.07),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.4);
   transition: transform var(--dur-normal) var(--ease-out-expo),
               box-shadow var(--dur-normal) var(--ease-out-expo),
               border-color var(--dur-normal) var(--ease-out-expo);
+  position: relative;
+  overflow: hidden;
+}
+
+.developer-profile-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 10%;
+  width: 80%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(108, 99, 255, 0.5), rgba(34, 211, 238, 0.3), transparent);
+  pointer-events: none;
 }
 
 .developer-profile-card:hover {
-  transform: translateY(-4px);
+  transform: translateY(-6px);
   border-color: var(--border-active);
   box-shadow: 
-    0 25px 50px -15px rgba(0, 0, 0, 0.8),
-    0 0 30px 4px rgba(108, 99, 255, 0.15);
+    0 32px 60px -15px rgba(0, 0, 0, 0.85),
+    0 0 35px 4px rgba(108, 99, 255, 0.18),
+    inset 0 1px 0 rgba(255, 255, 255, 0.10);
 }
 
 /* Header Section */
@@ -192,7 +221,7 @@
 }
 
 .metric-card {
-  background-color: rgba(255, 255, 255, 0.02);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.025) 0%, rgba(108, 99, 255, 0.03) 100%);
   border: 1px solid var(--surface-03);
   border-radius: var(--radius-lg);
   padding: var(--space-3) var(--space-2);
@@ -200,12 +229,14 @@
   flex-direction: column;
   gap: 4px;
   transition: background-color var(--dur-fast) var(--ease-linear),
-              border-color var(--dur-fast) var(--ease-linear);
+              border-color var(--dur-fast) var(--ease-linear),
+              box-shadow var(--dur-fast) var(--ease-linear);
 }
 
 .metric-card:hover {
-  background-color: rgba(255, 255, 255, 0.04);
-  border-color: rgba(108, 99, 255, 0.2);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.04) 0%, rgba(108, 99, 255, 0.06) 100%);
+  border-color: rgba(108, 99, 255, 0.25);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3), 0 0 8px rgba(34, 211, 238, 0.06);
 }
 
 .metric-label {
@@ -217,8 +248,9 @@
 
 .metric-value {
   font-size: var(--text-sm);
-  font-weight: 600;
-  color: var(--text-primary);
+  font-weight: 700;
+  color: var(--accent-secondary);
+  text-shadow: 0 0 12px rgba(34, 211, 238, 0.25);
 }
 
 /* Tech Stack Pills */

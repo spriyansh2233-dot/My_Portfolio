@@ -83,28 +83,36 @@ const GeminiIcon = () => (
   </svg>
 );
 
-// Core stack
-const coreSkills = [
+// 1. Frontend
+const frontendSkills = [
   { name: 'React', icon: <ReactIcon /> },
-  { name: 'Java', icon: <JavaIcon /> },
-  { name: 'Spring Boot', icon: <SpringBootIcon /> },
-  { name: 'SQL', icon: <Database size={24} /> }
-];
-
-// Technologies & Tools
-const techSkills = [
   { name: 'JavaScript', icon: <JavaScriptIcon /> },
   { name: 'Tailwind CSS', icon: <TailwindIcon /> },
-  { name: 'Framer Motion', icon: <FramerIcon /> },
-  { name: 'JWT', icon: <KeyRound size={16} /> },
+  { name: 'Framer Motion', icon: <FramerIcon /> }
+];
+
+// 2. Backend
+const backendSkills = [
+  { name: 'Java', icon: <JavaIcon /> },
+  { name: 'Spring Boot', icon: <SpringBootIcon /> },
   { name: 'Spring Security', icon: <ShieldCheck size={16} /> },
+  { name: 'JWT', icon: <KeyRound size={16} /> },
   { name: 'REST APIs', icon: <ApiIcon /> },
-  { name: 'Hibernate/JPA', icon: <Database size={16} /> },
+  { name: 'Hibernate/JPA', icon: <Database size={16} /> }
+];
+
+// 3. Databases & Tools
+const databaseToolSkills = [
+  { name: 'SQL', icon: <Database size={16} /> },
   { name: 'MySQL', icon: <Database size={16} /> },
   { name: 'PostgreSQL', icon: <Database size={16} /> },
   { name: 'Git', icon: <GitBranch size={16} /> },
   { name: 'GitHub', icon: <GithubIcon size={16} /> },
-  { name: 'VS Code', icon: <VsCodeIcon /> },
+  { name: 'VS Code', icon: <VsCodeIcon /> }
+];
+
+// 4. AI & Learning
+const aiLearningSkills = [
   { name: 'Google Gemini', icon: <GeminiIcon /> },
   { name: 'AI Integration', icon: <Cpu size={16} /> },
   { name: 'System Design', icon: <LayoutGrid size={16} /> },
@@ -217,39 +225,66 @@ export default function Skills() {
           initial="hidden"
           animate={isInView ? 'visible' : 'hidden'}
         >
-          {/* 1. Core Stack Card */}
-          <motion.div className="skills-card core-stack-card card-premium" variants={cardVariants}>
+          {/* 1. Frontend */}
+          <motion.div className="skills-card card-premium" variants={cardVariants}>
             <div className="card-ambient-glow" />
-            <h3 className="category-title">Core Stack</h3>
-            
+            <h3 className="category-title">Frontend</h3>
             <motion.div 
-              className="core-skills-grid"
+              className="tech-pills-wrapper"
               variants={tagContainerVariants}
             >
-              {coreSkills.map((skill) => (
-                <motion.div key={skill.name} className="core-skill-item" variants={tagVariants}>
-                  <div className="core-skill-icon-wrapper">
-                    {skill.icon}
-                  </div>
-                  <div className="core-skill-info">
-                    <span className="core-skill-name mono">{skill.name}</span>
-                    <span className="core-skill-level mono">Primary Stack</span>
-                  </div>
+              {frontendSkills.map((skill) => (
+                <motion.div key={skill.name} className="tech-skill-pill" variants={tagVariants}>
+                  <span className="tech-pill-icon">{skill.icon}</span>
+                  <span className="tech-pill-name mono">{skill.name}</span>
                 </motion.div>
               ))}
             </motion.div>
           </motion.div>
 
-          {/* 2. Technologies & Tools Card */}
-          <motion.div className="skills-card tech-tools-card card-premium" variants={cardVariants}>
+          {/* 2. Backend */}
+          <motion.div className="skills-card card-premium" variants={cardVariants}>
             <div className="card-ambient-glow" />
-            <h3 className="category-title">Technologies & Tools</h3>
-            
+            <h3 className="category-title">Backend</h3>
             <motion.div 
               className="tech-pills-wrapper"
               variants={tagContainerVariants}
             >
-              {techSkills.map((skill) => (
+              {backendSkills.map((skill) => (
+                <motion.div key={skill.name} className="tech-skill-pill" variants={tagVariants}>
+                  <span className="tech-pill-icon">{skill.icon}</span>
+                  <span className="tech-pill-name mono">{skill.name}</span>
+                </motion.div>
+              ))}
+            </motion.div>
+          </motion.div>
+
+          {/* 3. Databases & Tools */}
+          <motion.div className="skills-card card-premium" variants={cardVariants}>
+            <div className="card-ambient-glow" />
+            <h3 className="category-title">Databases & Tools</h3>
+            <motion.div 
+              className="tech-pills-wrapper"
+              variants={tagContainerVariants}
+            >
+              {databaseToolSkills.map((skill) => (
+                <motion.div key={skill.name} className="tech-skill-pill" variants={tagVariants}>
+                  <span className="tech-pill-icon">{skill.icon}</span>
+                  <span className="tech-pill-name mono">{skill.name}</span>
+                </motion.div>
+              ))}
+            </motion.div>
+          </motion.div>
+
+          {/* 4. AI & Learning */}
+          <motion.div className="skills-card card-premium" variants={cardVariants}>
+            <div className="card-ambient-glow" />
+            <h3 className="category-title">AI & Learning</h3>
+            <motion.div 
+              className="tech-pills-wrapper"
+              variants={tagContainerVariants}
+            >
+              {aiLearningSkills.map((skill) => (
                 <motion.div key={skill.name} className="tech-skill-pill" variants={tagVariants}>
                   <span className="tech-pill-icon">{skill.icon}</span>
                   <span className="tech-pill-name mono">{skill.name}</span>

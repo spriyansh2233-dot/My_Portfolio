@@ -216,9 +216,12 @@ function CertCard({ cert, onClick }) {
           <span className="cert-card-year mono">{cert.year}</span>
         </div>
         <h3 className="cert-card-title">{cert.title}</h3>
-        <span className="cert-card-cta mono">
-          View Credentials <ExternalLink size={11} />
-        </span>
+        <div className="cert-card-footer">
+          <span className="cert-card-verified mono">✦ Verified</span>
+          <span className="cert-card-cta mono">
+            Credentials <ExternalLink size={11} />
+          </span>
+        </div>
       </div>
     </div>
   );

@@ -3,58 +3,8 @@ import { motion, AnimatePresence, useMotionValue, useSpring } from 'framer-motio
 import { ArrowDown } from 'lucide-react';
 import './Hero.css';
 
-const codeSnippet = `const developer = {
-  name: "Priyansh Sharma",
-  role: "Full Stack Developer",
-  education: "B.Tech CSE (AIML)",
-  frontend: [
-    "React",
-    "JavaScript",
-    "Tailwind CSS"
-  ],
-  backend: [
-    "Spring Boot",
-    "Java",
-    "SQL"
-  ],
-  tools: [
-    "Git",
-    "GitHub",
-    "VS Code"
-  ],
-  currently: "Building Quantum Intel",
-  status: "Open to Opportunities"
-};`;
-
-// Safe local parser for syntax highlighting typing code
-const highlightCode = (code) => {
-  if (!code) return '';
-  
-  // Escape HTML characters
-  let html = code
-    .replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;');
-    
-  // Highlight strings (double quotes content)
-  html = html.replace(/("[^"]*")/g, '<span class="code-string">$1</span>');
-  
-  // Highlight keywords: const
-  html = html.replace(/\b(const)\b/g, '<span class="code-keyword">$1</span>');
-  
-  // Highlight object properties followed by a colon
-  html = html.replace(/\b(name|role|education|frontend|backend|tools|currently|status)(?=\s*:)/g, '<span class="code-property">$1</span>');
-  
-  // Highlight brackets & punctuation
-  html = html.replace(/([{}[\];,])/g, '<span class="code-punctuation">$1</span>');
-  
-  return html;
-};
-
 export default function Hero() {
-  const [typedCode, setTypedCode] = useState('');
   const [showIndicator, setShowIndicator] = useState(true);
-  const codeIndex = useRef(0);
 
   // Parallax movement for background Aurora Orbs
   const mouseX = useMotionValue(0);
@@ -64,16 +14,20 @@ export default function Hero() {
   const orbX = useSpring(mouseX, { damping: 40, stiffness: 120 });
   const orbY = useSpring(mouseY, { damping: 40, stiffness: 120 });
 
-  useEffect(() => {
-    // Reset typing animation variables to ensure clean sync on mount/restart
-    codeIndex.current = 0;
-    setTypedCode('');
+  // Springs for subtler visual card movement
+  const cardX = useSpring(useMotionValue(0), { damping: 50, stiffness: 100 });
+  const cardY = useSpring(useMotionValue(0), { damping: 50, stiffness: 100 });
 
+  useEffect(() => {
     const handleMouseMove = (e) => {
       const x = (e.clientX / window.innerWidth - 0.5) * 40; // max 40px displacement
       const y = (e.clientY / window.innerHeight - 0.5) * 40;
       mouseX.set(x);
       mouseY.set(y);
+      
+      // sub-spring offsets for subtle card movement
+      cardX.set(x * 0.35); // max ~14px displacement
+      cardY.set(y * 0.35);
     };
 
     const handleScroll = () => {
@@ -87,23 +41,11 @@ export default function Hero() {
     window.addEventListener('mousemove', handleMouseMove);
     window.addEventListener('scroll', handleScroll);
 
-    // Typing effect
-    const interval = setInterval(() => {
-      if (codeIndex.current < codeSnippet.length) {
-        const nextChar = codeSnippet[codeIndex.current];
-        setTypedCode((prev) => prev + nextChar);
-        codeIndex.current += 1;
-      } else {
-        clearInterval(interval);
-      }
-    }, 15); // Slightly faster typing for longer snippet
-
     return () => {
       window.removeEventListener('mousemove', handleMouseMove);
       window.removeEventListener('scroll', handleScroll);
-      clearInterval(interval);
     };
-  }, [mouseX, mouseY]);
+  }, [mouseX, mouseY, cardX, cardY]);
 
   const handleScrollToProjects = (e) => {
     e.preventDefault();
@@ -237,7 +179,7 @@ export default function Hero() {
             </motion.div>
           </motion.div>
 
-          {/* Hero Right Code Visual */}
+          {/* Hero Right Workspace Visual */}
           <motion.div
             className="hero-visual-area"
             initial={{ opacity: 0, scale: 0.95, y: 30 }}
@@ -245,28 +187,24 @@ export default function Hero() {
             transition={{ delay: 0.6, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
           >
             <motion.div
-              className="terminal-card"
+              className="workspace-card-wrapper"
               animate={{ y: [0, -8, 0] }}
-              transition={{ repeat: Infinity, duration: 4, ease: "easeInOut" }}
+              transition={{ repeat: Infinity, duration: 5, ease: "easeInOut" }}
             >
-              {/* Terminal Title Bar */}
-              <div className="terminal-header">
-                <div className="terminal-dot close" />
-                <div className="terminal-dot minimize" />
-                <div className="terminal-dot maximize" />
-                <div className="terminal-title mono">priyansh.js</div>
-              </div>
-              
-              {/* Code Panel */}
-              <div className="terminal-body">
-                <pre className="terminal-code mono">
-                  <code 
-                    dangerouslySetInnerHTML={{ 
-                      __html: highlightCode(typedCode) + '<span class="typing-cursor">|</span>' 
-                    }} 
+              <motion.div
+                className="workspace-card"
+                style={{ x: cardX, y: cardY }}
+                whileHover={{ y: -4 }}
+              >
+                <div className="workspace-img-container">
+                  <img 
+                    src="/image/developer_workspace.png" 
+                    alt="Premium full-stack developer workspace illustration" 
+                    className="workspace-img"
                   />
-                </pre>
-              </div>
+                  <div className="workspace-glow" />
+                </div>
+              </motion.div>
             </motion.div>
           </motion.div>
         </div>
